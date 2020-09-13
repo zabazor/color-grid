@@ -1,3 +1,11 @@
+# Color Grid
+
+// Might remove the facing so the player can freely rotate the tile = 110 unique tiles
+Tile possibilities = (nonReflectiveShapes + 2*reflectiveShapes) * color * facing
+440 = (10 + 2*6) _ 5 _ 4
+
+# --------------Development Information-----------------
+
 # ColorGrid
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.1.
