@@ -17,8 +17,9 @@ export class Shape {
   }
 }
 
-// This is easier to visually see if it is a string, but probably easier to use if it is boolean
 export class ShapeLayout {
+  rows: any[];
+
   row1: boolean[];
   row2: boolean[];
   row3: boolean[];
@@ -27,5 +28,11 @@ export class ShapeLayout {
     this.row1 = row1;
     this.row2 = row2;
     this.row3 = row3;
+
+    // Same as above, but an array of arrays
+    this.rows = [];
+    this.rows.push(row1);
+    this.rows.push(row2);
+    this.rows.push(row3);
   }
 }

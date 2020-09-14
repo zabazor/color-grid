@@ -43,10 +43,26 @@ export enum FACING {
   left = 'Left',
 }
 
-export enum COLOR {
+export enum COLOR_NAMES {
+  red = 'Red',
+  yellow = 'Yellow',
+  green = 'Green',
+  blue = 'Blue',
+  purple = 'Purple',
+}
+
+export enum COLOR_CODES {
   red = 'red',
   yellow = 'yellow',
   green = 'green',
   blue = 'blue',
   purple = 'purple',
+}
+
+export enum COLOR_ICONS {
+  red = 'fire',
+  yellow = 'sun', // still not sure if I want this to be air or sun (air/light)
+  green = 'leaf',
+  blue = 'water',
+  purple = 'star', // as star this could be (magic/darkness)
 }

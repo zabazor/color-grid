@@ -1,0 +1,14 @@
+.cell {
+  padding: 0.5rem;
+
+  // This will come from globals soon enough
+  &.filled {
+    background-color: red;
+  }
+}
+
+.tile-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
