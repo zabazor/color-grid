@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container tile">
     <div class="flex-d flex-column justify-content-center">
-        <div *ngFor="let row of shape.layout.rows"
+        <div *ngFor="let row of tile.shape.layout.rows"
             class="tile-row">
             <div *ngFor="let cell of row"
-                class="cell"
+                class="cell color-{{tile.color.code}}"
                 
                 [ngClass]="{ 'filled': cell === true }"></div>
                 <!--Need to fix the auto formatting so this above line is allowed-->

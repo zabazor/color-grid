@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 
 import { ExamplesModule } from './shared/examples/examples.module';
 import { TileCardComponent } from './shared/tile-card/tile-card.component';
+import { TileTrayComponent } from './shared/tile-tray/tile-tray.component';
 
 @NgModule({
-  declarations: [AppComponent, TileCardComponent],
+  declarations: [AppComponent, TileCardComponent, TileTrayComponent],
   imports: [BrowserModule, AppRoutingModule, ExamplesModule],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [TileCardComponent],
+  exports: [TileCardComponent, TileTrayComponent],
 })
 export class AppModule {}
