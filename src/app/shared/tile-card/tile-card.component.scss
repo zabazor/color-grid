@@ -1,6 +1,8 @@
+// @import "index"; // not working
+
 // These might change, but ok for now
 $tile-color-lite: #e6dfd6;
-$tile-color : #ddd5ca;
+$tile-color: #ddd5ca;
 $tile-color-dark-1: #d3cec7;
 $tile-color-dark-2: #d0c9be;
 $tile-color-dark-3: #bfb8ae;
@@ -15,8 +17,7 @@ $yellow: #ffff00;
 
 $purple: #ff00ff;
 
-
-.tile{
+.tile {
   padding: 1rem;
   max-width: max-content;
   max-height: max-content;
@@ -34,19 +35,19 @@ $purple: #ff00ff;
 
   // This will come from globals soon enough
   &.filled {
-    &.color-red{
+    &.color-red {
       background-color: $red;
     }
-    &.color-green{
+    &.color-green {
       background-color: $green;
     }
-    &.color-blue{
+    &.color-blue {
       background-color: $blue;
     }
-    &.color-yellow{
+    &.color-yellow {
       background-color: $yellow;
     }
-    &.color-purple{
+    &.color-purple {
       background-color: $purple;
     }
   }

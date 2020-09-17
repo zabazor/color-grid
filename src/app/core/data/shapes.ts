@@ -1,5 +1,5 @@
 import { SHAPE_CODES, SHAPE_NAMES } from '../constants/tile.constants';
-import { Shape, ShapeLayout } from '../interfaces/shape.interface';
+import { Shape, ShapeLayout } from '../classes/shape.class';
 
 export const SHAPES = [
   new Shape(

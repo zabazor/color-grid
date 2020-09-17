@@ -1,5 +1,5 @@
 import { COLOR_CODES, COLOR_NAMES, COLOR_ICONS } from '../constants';
-import { Color } from '../interfaces';
+import { Color } from '../classes';
 
 export const ColorRed = new Color(
   COLOR_NAMES.red,
