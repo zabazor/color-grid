@@ -1,1 +1,1 @@
-export * from './tile-transformation/tile-transformation.service';
+export * from './transformation/transformation.service';

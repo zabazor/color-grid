@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FACING } from 'src/app/core/constants';
 import { SHAPES } from 'src/app/core/data';
 import { Shape, Tile } from 'src/app/core/classes';
-import { TileTransformationService } from 'src/app/core/services';
+import { TransformationService } from 'src/app/core/services';
 
 @Component({
   selector: 'cg-tile-card',
@@ -12,10 +12,10 @@ import { TileTransformationService } from 'src/app/core/services';
 export class TileCardComponent implements OnInit {
   @Input() tile: Tile;
 
-  constructor(private tileTransformationService: TileTransformationService) {}
+  constructor(private transformationService: TransformationService) {}
 
   ngOnInit(): void {
-    this.tile = this.tileTransformationService.reflectTheTile(this.tile);
-    this.tile = this.tileTransformationService.rotateTheTile(this.tile);
+    this.tile = this.transformationService.reflectTheTile(this.tile);
+    this.tile = this.transformationService.rotateTheTile(this.tile);
   }
 }

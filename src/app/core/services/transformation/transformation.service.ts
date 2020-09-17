@@ -5,7 +5,7 @@ import { FACING } from '../../constants';
 @Injectable({
   providedIn: 'root',
 })
-export class TileTransformationService {
+export class TransformationService {
   constructor() {}
 
   reflectTheTile(tile: Tile): Tile {
@@ -20,12 +20,13 @@ export class TileTransformationService {
   rotateTheTile(tile: Tile): Tile {
     // FACING.up is the default, so it is not changed
     if (tile.facing === FACING.right) {
-      this.rotateRight(tile);
+      tile.shape.layout.rows = this.rotate2DArrayRight(tile.shape.layout.rows);
     } else if (tile.facing === FACING.left) {
-      this.rotateLeft(tile);
+      tile.shape.layout.rows = this.rotate2DArrayLeft(tile.shape.layout.rows);
     } else if (tile.facing === FACING.down) {
-      // rewrite this as a single transformation
-      this.rotateUpsideDown(tile);
+      tile.shape.layout.rows = this.rotate2DArrayUpsideDown(
+        tile.shape.layout.rows
+      );
     }
     return tile;
   }
@@ -39,23 +40,23 @@ export class TileTransformationService {
   r3[ ][ ][ ]          V         c3[ ][ ][ ]
 
   */
-  rotateRight(tile: Tile): Tile {
-    const rows = tile.shape.layout.rows;
+  rotate2DArrayRight(rows: any[]): any[] {
     const newRows = [];
 
     let cellIndex = 0;
     let newRowIndex = 0;
     for (newRowIndex; newRowIndex < rows[0].length; newRowIndex++) {
       newRows.push([]);
+      // using the length - 1 as the index, lets us "reverse" the array
       let rowIndex = rows.length - 1;
       for (rowIndex; rowIndex >= 0; rowIndex--) {
+        // Go through each row at the same cell index to swap cells with rows
         newRows[newRowIndex].push(rows[rowIndex][cellIndex]);
       }
       cellIndex++;
     }
 
-    tile.shape.layout.rows = newRows;
-    return tile;
+    return newRows;
   }
 
   /*
@@ -67,24 +68,24 @@ export class TileTransformationService {
   r3[ ][ ][ ]     V             c1[ ][ ][ ]
 
   */
-  rotateLeft(tile: Tile): Tile {
-    const rows = tile.shape.layout.rows;
+  rotate2DArrayLeft(rows: any[]): any[] {
     const newRows = [];
 
+    // using the length - 1 as the index, lets us "reverse" the array
     let cellIndex = rows[0].length - 1;
     let newRowIndex = 0;
     for (newRowIndex; newRowIndex < rows[0].length; newRowIndex++) {
       newRows.push([]);
       let rowIndex = 0;
       for (rowIndex; rowIndex < rows.length; rowIndex++) {
+        // Go through each row at the same cell index to swap cells with rows
         newRows[newRowIndex].push(rows[rowIndex][cellIndex]);
       }
 
       cellIndex--;
     }
 
-    tile.shape.layout.rows = newRows;
-    return tile;
+    return newRows;
   }
 
   /*
@@ -96,14 +97,15 @@ export class TileTransformationService {
   r3[ ][ ][ ]     V   |           r1[ ][ ][ ]
 
   */
-  rotateUpsideDown(tile: Tile): Tile {
-    const rows = tile.shape.layout.rows;
+  rotate2DArrayUpsideDown(rows: any[]): any[] {
     const newRows = [];
 
+    // using the length - 1 as the index, lets us "reverse" the array
     let rowIndex = rows.length - 1;
     let newRowIndex = 0;
     for (newRowIndex; newRowIndex < rows[0].length; newRowIndex++) {
       newRows.push([]);
+      // using the length - 1 as the index, lets us "reverse" the array
       let cellIndex = rows[0].length - 1;
       for (cellIndex; cellIndex >= 0; cellIndex--) {
         newRows[newRowIndex].push(rows[rowIndex][cellIndex]);
@@ -112,7 +114,6 @@ export class TileTransformationService {
       rowIndex--;
     }
 
-    tile.shape.layout.rows = newRows;
-    return tile;
+    return newRows;
   }
 }
