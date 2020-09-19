@@ -18,12 +18,12 @@ export class TransformationService {
   }
 
   rotateTheTile(tile: Tile): Tile {
-    // FACING.up is the default, so it is not changed
+    // FACING.upWards is the default, so it is not changed
     if (tile.facing === FACING.right) {
       tile.shape.layout.rows = this.rotate2DArrayRight(tile.shape.layout.rows);
     } else if (tile.facing === FACING.left) {
       tile.shape.layout.rows = this.rotate2DArrayLeft(tile.shape.layout.rows);
-    } else if (tile.facing === FACING.down) {
+    } else if (tile.facing === FACING.downWards) {
       tile.shape.layout.rows = this.rotate2DArrayUpsideDown(
         tile.shape.layout.rows
       );

@@ -37,8 +37,8 @@ export enum SHAPE_CODES {
 }
 
 export enum FACING {
-  up = 'Up',
-  down = 'Down',
+  upWards = 'Up Wards',
+  downWards = 'Down Wards',
   right = 'Right',
   left = 'Left',
 }
