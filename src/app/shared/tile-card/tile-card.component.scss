@@ -1,21 +1,4 @@
-// @import "index"; // not working
-
-// These might change, but ok for now
-$tile-color-lite: #e6dfd6;
-$tile-color: #ddd5ca;
-$tile-color-dark-1: #d3cec7;
-$tile-color-dark-2: #d0c9be;
-$tile-color-dark-3: #bfb8ae;
-
-$red: #ff0000;
-
-$green: #00ff00;
-
-$blue: #0000ff;
-
-$yellow: #ffff00;
-
-$purple: #ff00ff;
+@import "../../../assets/scss/index.scss";
 
 .tile {
   padding: 1rem;

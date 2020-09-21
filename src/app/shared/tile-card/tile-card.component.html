@@ -4,7 +4,7 @@
       class="tile-row">
       <div *ngFor="let cell of row"
         class="cell color-{{ tile.color.code }}"
-        [ngClass]="{ filled: cell === true }"></div>
+        [ngClass]="{ 'filled': cell === true }"></div>
     </div>
   </div>
 </div>

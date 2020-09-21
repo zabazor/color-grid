@@ -1,1 +1,10 @@
-<cg-tile-card [tile]="tile"></cg-tile-card>
+<div class="tile-tray-ridge">
+  <div class="d-flex flex-row tile-tray">
+    <cg-tile-card [tile]="tile"
+      class="tile"
+      *ngFor="let tile of tiles"></cg-tile-card>
+  </div>
+</div>
+
+
+<button (click)="drawTilesPerPlayers()">Draw Tiles</button>

@@ -1,0 +1,29 @@
+@import "../../../assets/scss/index.scss";
+
+.tile-tray-ridge {
+  padding: 1rem;
+  background-color: lightgray;
+  border-radius: 0.5rem;
+
+  border-top: $tile-color-lite solid;
+  border-right: $tile-color-dark-2 solid;
+  border-bottom: $tile-color-dark-3 solid;
+  border-left: $tile-color-dark-1 solid;
+}
+
+.tile-tray {
+  background-color: gray;
+  border-radius: 0.5rem;
+  justify-content: space-between;
+
+  .tile {
+    margin: 1rem 0;
+  }
+
+  :first-child {
+    margin-left: 1rem;
+  }
+  :last-child {
+    margin-right: 1rem;
+  }
+}
