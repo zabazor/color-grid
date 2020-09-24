@@ -1,10 +1,9 @@
 <div class="tile-tray-ridge">
   <div class="d-flex flex-row tile-tray">
     <cg-tile-card [tile]="tile"
+      (tileRemoved)="tileRemoved()"
+      (tileSelected)="tileSelected()"
       class="tile"
       *ngFor="let tile of tiles"></cg-tile-card>
   </div>
 </div>
-
-
-<button (click)="drawTilesPerPlayers()">Draw Tiles</button>

@@ -1,29 +1,37 @@
 @import "../../../assets/scss/index.scss";
 
 .tile-tray-ridge {
-  padding: 1rem;
-  background-color: lightgray;
+  padding: 0.5rem;
+  background-color: $tile-gray-15;
   border-radius: 0.5rem;
+  max-width: 35rem;
 
-  border-top: $tile-color-lite solid;
-  border-right: $tile-color-dark-2 solid;
-  border-bottom: $tile-color-dark-3 solid;
-  border-left: $tile-color-dark-1 solid;
+  margin: 0 auto;
+
+  border-top: $tile-gray-10 solid;
+  border-right: $tile-gray-25 solid;
+  border-bottom: $tile-gray-30 solid;
+  border-left: $tile-gray-20 solid;
 }
 
 .tile-tray {
-  background-color: gray;
+  background-color: $tile-gray-40;
+  border-top: $tile-gray-50 solid;
+  border-right: $tile-gray-30 solid;
+  border-bottom: $tile-gray-35 solid;
+  border-left: $tile-gray-45 solid;
+
   border-radius: 0.5rem;
-  justify-content: space-between;
+  justify-content: space-around;
 
   .tile {
     margin: 1rem 0;
   }
 
   :first-child {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
   }
   :last-child {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 }

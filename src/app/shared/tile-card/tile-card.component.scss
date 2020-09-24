@@ -1,37 +1,59 @@
 @import "../../../assets/scss/index.scss";
 
+.removed {
+  opacity: 0;
+}
+
 .tile {
-  padding: 1rem;
+  padding: 0.5rem;
   max-width: max-content;
   max-height: max-content;
-  background-color: $tile-color;
-  border-top: $tile-color-lite solid;
-  border-right: $tile-color-dark-2 solid;
-  border-bottom: $tile-color-dark-3 solid;
-  border-left: $tile-color-dark-1 solid;
+  background-color: $tile-gray-15;
+  border-top: $tile-gray-10 solid;
+  border-right: $tile-gray-25 solid;
+  border-bottom: $tile-gray-30 solid;
+  border-left: $tile-gray-20 solid;
   border-radius: 1rem;
   border-width: 0.5rem;
+
+  // I hate how my editor is reformatting this on save.  I want each shadow to be its own line
+  &.selected {
+    box-shadow: 0 0 0 1px $select-glow1, 0 0 0 2px $select-glow2,
+      0 0 0 3px $select-glow3, 0 0 0 4px $select-glow4, 0 0 0 5px $select-glow5;
+  }
 }
 
 .cell {
-  padding: 0.5rem;
+  padding: 0.25rem;
+  border: $invisible 2px solid;
+  border-radius: 2px;
+  margin: 1px;
 
   // This will come from globals soon enough
   &.filled {
     &.color-red {
-      background-color: $red;
+      background-color: $red-10;
+      border: $red-40 2px solid;
     }
-    &.color-green {
-      background-color: $green;
-    }
-    &.color-blue {
-      background-color: $blue;
+    &.color-orange {
+      background-color: $orange-10;
+      border: $orange-40 2px solid;
     }
     &.color-yellow {
-      background-color: $yellow;
+      background-color: $yellow-10;
+      border: $yellow-40 2px solid;
+    }
+    &.color-green {
+      background-color: $green-10;
+      border: $green-40 2px solid;
+    }
+    &.color-blue {
+      background-color: $blue-10;
+      border: $blue-40 2px solid;
     }
     &.color-purple {
-      background-color: $purple;
+      background-color: $purple-10;
+      border: $purple-40 2px solid;
     }
   }
 }

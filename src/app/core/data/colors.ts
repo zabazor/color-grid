@@ -7,6 +7,12 @@ export const ColorRed = new Color(
   COLOR_ICONS.red
 );
 
+export const ColorOrange = new Color(
+  COLOR_NAMES.orange,
+  COLOR_CODES.orange,
+  COLOR_ICONS.orange
+);
+
 export const ColorYellow = new Color(
   COLOR_NAMES.yellow,
   COLOR_CODES.yellow,
@@ -33,6 +39,7 @@ export const ColorPurple = new Color(
 
 export const COLORS = [
   ColorRed,
+  ColorOrange,
   ColorYellow,
   ColorGreen,
   ColorBlue,

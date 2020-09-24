@@ -6,6 +6,8 @@ export class Tile {
   shape: Shape;
   facing: string;
   reflection: boolean;
+  selected: boolean;
+  removed: boolean;
 
   constructor(
     color: Color,
@@ -17,5 +19,7 @@ export class Tile {
     this.shape = shape;
     this.facing = facing;
     this.reflection = reflection;
+    this.selected = false;
+    this.removed = false;
   }
 }

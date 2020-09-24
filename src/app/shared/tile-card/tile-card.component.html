@@ -1,4 +1,6 @@
-<div class="container tile">
+<div class="container tile"
+  [ngClass]="{'removed': tile.removed, 'selected': tile.selected}"
+  (click)="clickTile()">
   <div class="flex-d flex-column justify-content-center">
     <div *ngFor="let row of tile.shape.layout.rows"
       class="tile-row">

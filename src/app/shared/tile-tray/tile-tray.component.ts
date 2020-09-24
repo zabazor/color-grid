@@ -19,8 +19,9 @@ export class TileTrayComponent implements OnInit {
   tile5: Tile;
 
   tiles: Tile[];
-  // bad starting array to represnet the number of players
+  // bad starting array to represent the number of players
   players = [1, 2, 3, 4];
+  removedTileCount: number;
 
   constructor(private gameEngineService: GameEngineService) {}
 
@@ -28,12 +29,30 @@ export class TileTrayComponent implements OnInit {
     this.drawTilesPerPlayers();
   }
 
-  drawTilesPerPlayers() {
+  drawTilesPerPlayers(): void {
     this.tiles = [];
+
+    this.removedTileCount = 0;
 
     let i = 0;
     for (i; i < this.players.length + 1; i++) {
       this.tiles.push(this.gameEngineService.drawATile());
+    }
+  }
+
+  tileRemoved(): void {
+    this.removedTileCount = this.removedTileCount + 1;
+    if (this.removedTileCount >= this.tiles.length - 1) {
+      // This works for now
+      // TODO: this will probably be triggered by the last player placing the tile in their grid
+      // Then the Round will restart, resetting the tray
+      this.drawTilesPerPlayers();
+    }
+  }
+
+  tileSelected(): void {
+    for (const tile of this.tiles) {
+      tile.selected = false;
     }
   }
 }

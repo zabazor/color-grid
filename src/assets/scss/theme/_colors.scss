@@ -16,18 +16,57 @@ $green-900: #ffffff;
 
 /////////////////////////////////////////
 
-$tile-color-lite: #e6dfd6;
-$tile-color: #ddd5ca;
-$tile-color-dark-1: #d3cec7;
-$tile-color-dark-2: #d0c9be;
-$tile-color-dark-3: #bfb8ae;
+$invisible: #ffffff00;
 
-$red: #ff0000;
+$tile-gray-10: #e6dfd6;
+$tile-gray-15: #ddd5ca;
+$tile-gray-20: #d3cec7;
+$tile-gray-25: #d0c9be;
+$tile-gray-30: #bfb8ae;
+$tile-gray-35: #a0978b;
+$tile-gray-40: #888075;
+$tile-gray-45: #746d61;
+$tile-gray-50: #645f55;
 
-$green: #00ff00;
+$red-10: #ff0000;
+$red-20: #dd0000;
+$red-30: #bb0000;
+$red-40: #990000;
+$red-50: #770000;
 
-$blue: #0000ff;
+$orange-10: #ff8800;
+$orange-20: #dd7200;
+$orange-30: #bb5100;
+$orange-40: #993d00;
+$orange-50: #773000;
 
-$yellow: #ffff00;
+// Work on this - ugly green tint
+$yellow-10: #ffff00;
+$yellow-20: #ddbc00;
+$yellow-30: #bba500;
+$yellow-40: #998200;
+$yellow-50: #775f00;
 
-$purple: #ff00ff;
+$green-10: #00ff00;
+$green-20: #00dd00;
+$green-30: #00bb00;
+$green-40: #009900;
+$green-50: #007700;
+
+$blue-10: #0000ff;
+$blue-20: #0000bb;
+$blue-30: #000077;
+$blue-40: #000055;
+$blue-50: #000033;
+
+$purple-10: #ff00ff;
+$purple-20: #bb00bb;
+$purple-30: #770077;
+$purple-40: #550055;
+$purple-50: #330033;
+
+$select-glow1: #00ffff;
+$select-glow2: #00ffffcc;
+$select-glow3: #00ffff99;
+$select-glow4: #00ffff66;
+$select-glow5: #00ffff33;

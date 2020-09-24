@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { deepClone } from '../utility';
 import { Tile } from '../../classes';
 import { SHAPES } from '../../data';
 import { COLORS } from '../../data/colors';
@@ -14,8 +15,9 @@ export class GameEngineService {
     const colorIndex = Math.floor(Math.random() * COLORS.length);
     const color = COLORS[colorIndex];
 
+    // Deep Clone because we expect to manipulate the Shape with transformations later
     const shapeIndex = Math.floor(Math.random() * SHAPES.length);
-    const shape = SHAPES[shapeIndex];
+    const shape = deepClone(SHAPES[shapeIndex]);
 
     const facingIndex = Math.floor(Math.random() * FACINGS.length);
     const facing = FACINGS[facingIndex];
