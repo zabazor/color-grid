@@ -18,8 +18,8 @@
 
   // I hate how my editor is reformatting this on save.  I want each shadow to be its own line
   &.selected {
-    box-shadow: 0 0 0 1px $select-glow1, 0 0 0 2px $select-glow2,
-      0 0 0 3px $select-glow3, 0 0 0 4px $select-glow4, 0 0 0 5px $select-glow5;
+    box-shadow: 0 0 0 1px $select-glow1, 0 0 0 3px $select-glow2,
+      0 0 0 5px $select-glow3, 0 0 0 7px $select-glow4, 0 0 0 9px $select-glow5;
   }
 }
 
