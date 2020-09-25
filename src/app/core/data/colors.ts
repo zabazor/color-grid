@@ -37,6 +37,12 @@ export const ColorPurple = new Color(
   COLOR_ICONS.purple
 );
 
+export const ColorVoid = new Color(
+  COLOR_NAMES.void,
+  COLOR_CODES.void,
+  COLOR_ICONS.void
+);
+
 export const COLORS = [
   ColorRed,
   ColorOrange,

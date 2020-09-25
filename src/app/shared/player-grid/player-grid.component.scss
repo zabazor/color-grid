@@ -1,22 +1,20 @@
 @import "../../../assets/scss/index.scss";
 
 // right now, this is basically a copy of tile-card's .tile with margin
-.grid-ridge {
-  padding: 0.5rem;
+// Lets replace this with the tray and tray ridge
+.tray-ridge {
   max-width: max-content;
   max-height: max-content;
-  background-color: $tile-gray-15;
-  border-top: $tile-gray-10 solid;
-  border-right: $tile-gray-25 solid;
-  border-bottom: $tile-gray-30 solid;
-  border-left: $tile-gray-20 solid;
-  border-radius: 1rem;
-  border-width: 0.5rem;
 
+  border-radius: 0.5rem;
   margin: 1rem auto;
+  padding: 0.25rem;
+}
+
+.tray-well {
+  margin: 0.25rem;
 }
 
 .cell {
-  padding: 1rem;
-  margin: 0.25rem;
+  padding: 0.75rem;
 }

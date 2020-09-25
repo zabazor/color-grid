@@ -10,7 +10,12 @@ import { TileTrayComponent } from './shared/tile-tray/tile-tray.component';
 import { PlayerGridComponent } from './shared/player-grid/player-grid.component';
 
 @NgModule({
-  declarations: [AppComponent, TileCardComponent, TileTrayComponent, PlayerGridComponent],
+  declarations: [
+    AppComponent,
+    TileCardComponent,
+    TileTrayComponent,
+    PlayerGridComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, ExamplesModule],
   providers: [],
   bootstrap: [AppComponent],

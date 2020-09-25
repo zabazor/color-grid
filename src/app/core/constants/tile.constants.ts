@@ -70,4 +70,5 @@ export enum COLOR_ICONS {
   green = 'leaf',
   blue = 'water',
   purple = 'star', // as star this could be (magic/darkness)
+  void = 'void',
 }

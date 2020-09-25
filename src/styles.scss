@@ -19,6 +19,7 @@
   margin: 1px;
 
   // This will come from globals soon enough
+  // Maybe reverse this and have .empty set this to the invisible color?
   &.filled {
     &.color-red {
       background-color: $red-10;
@@ -44,9 +45,21 @@
       background-color: $purple-10;
       border: $purple-40 2px solid;
     }
-    &.color-void {
-      background-color: $tile-gray-40;
-      border: $tile-gray-50 2px solid;
-    }
   }
+}
+
+.tray-ridge {
+  background-color: $tile-gray-15;
+  border-top: $tile-gray-10 solid;
+  border-right: $tile-gray-25 solid;
+  border-bottom: $tile-gray-30 solid;
+  border-left: $tile-gray-20 solid;
+}
+
+.tray-well {
+  background-color: $tile-gray-40;
+  border-top: $tile-gray-50 solid;
+  border-right: $tile-gray-30 solid;
+  border-bottom: $tile-gray-35 solid;
+  border-left: $tile-gray-45 solid;
 }
