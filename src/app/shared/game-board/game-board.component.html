@@ -1,0 +1,7 @@
+<div>
+  <cg-tile-tray [selectedTile]="selectedTile"
+    [tiles]="tiles"
+    (tileSelectedEvent)="tileSelected($event)"></cg-tile-tray>
+  <cg-player-grid [selectedTile]="selectedTile"
+    (removedSelectedTileEvent)="removeSelectedTile()"></cg-player-grid>
+</div>

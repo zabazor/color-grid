@@ -10,8 +10,8 @@ import { TransformationService } from 'src/app/core/services';
 export class TileCardComponent implements OnInit {
   @Input() tile: Tile;
 
-  @Output() tileRemoved = new EventEmitter();
-  @Output() tileSelected = new EventEmitter();
+  // @Output() tileRemovedEvent: EventEmitter<Tile> = new EventEmitter<Tile>();
+  @Output() tileSelectedEvent: EventEmitter<Tile> = new EventEmitter<Tile>();
 
   constructor(private transformationService: TransformationService) {}
 
@@ -20,19 +20,20 @@ export class TileCardComponent implements OnInit {
     this.tile = this.transformationService.rotateTheTile(this.tile);
   }
 
-  displayEmptyTile(): void {
-    if (this.tile.selected) {
-      // This will probably be triggered when the tile is placed in the grid
-      this.tile.removed = true;
+  // displayEmptyTile(): void {
+  //   if (this.tile.selected) {
+  //     // This will probably be triggered when the tile is placed in the grid
+  //     this.tile.removed = true;
 
-      this.tileRemoved.emit();
-    }
+  //     this.tileRemovedEvent.emit(this.tile);
+  //   }
 
-    this.tileSelected.emit();
-    this.tile.selected = true;
-  }
+  //   this.tileSelectedEvent.emit(this.tile);
+  //   this.tile.selected = true;
+  // }
 
   clickTile(): void {
-    this.displayEmptyTile();
+    this.tileSelectedEvent.emit(this.tile);
+    this.tile.selected = true;
   }
 }

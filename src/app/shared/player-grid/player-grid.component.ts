@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Color } from 'src/app/core/classes';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Color, Tile } from 'src/app/core/classes';
 import {
   PlayerGrid,
   PlayerGridCell,
@@ -13,6 +13,9 @@ import { ColorRed, COLORS } from 'src/app/core/data/colors';
   styleUrls: ['./player-grid.component.scss'],
 })
 export class PlayerGridComponent implements OnInit {
+  @Input() selectedTile: Tile;
+  @Output() removedSelectedTileEvent = new EventEmitter();
+
   grid: PlayerGrid;
 
   constructor() {}
@@ -21,8 +24,9 @@ export class PlayerGridComponent implements OnInit {
     this.grid = new PlayerGrid();
   }
 
-  setColor(cell: PlayerGridCell): void {
+  placeTile(cell: PlayerGridCell): void {
     // Overly simplified - will probably need to use the row and cell values to find it in the grid and change others
-    cell.color = ColorRed;
+    cell.color = this.selectedTile.color;
+    this.removedSelectedTileEvent.emit();
   }
 }

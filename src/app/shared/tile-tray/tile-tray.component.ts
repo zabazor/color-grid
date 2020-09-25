@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { COLOR_CODES, FACING } from 'src/app/core/constants';
 import { SHAPES } from 'src/app/core/data';
 import { ColorGreen, ColorPurple, ColorRed } from 'src/app/core/data/colors';
@@ -12,45 +12,24 @@ import { ɵangular_packages_platform_browser_dynamic_platform_browser_dynamic_a 
   styleUrls: ['./tile-tray.component.scss'],
 })
 export class TileTrayComponent implements OnInit {
-  tile1: Tile;
-  tile2: Tile;
-  tile3: Tile;
-  tile4: Tile;
-  tile5: Tile;
+  @Input() selectedTile: Tile;
+  @Input() tiles: Tile[];
 
-  tiles: Tile[];
-  // bad starting array to represent the number of players
-  players = [1, 2, 3, 4];
-  removedTileCount: number;
+  @Output() tileSelectedEvent: EventEmitter<Tile> = new EventEmitter<Tile>();
+  // @Output() tileRemovedEvent: EventEmitter<Tile> = new EventEmitter<Tile>();
 
   constructor(private gameEngineService: GameEngineService) {}
 
-  ngOnInit(): void {
-    this.drawTilesPerPlayers();
-  }
+  ngOnInit(): void {}
 
-  drawTilesPerPlayers(): void {
-    this.tiles = [];
+  // This should be moved up to Game Board
+  // tileRemoved(removedTile: Tile): void {
+  //   this.tileRemovedEvent.emit(removedTile);
+  // }
 
-    this.removedTileCount = 0;
-
-    let i = 0;
-    for (i; i < this.players.length + 1; i++) {
-      this.tiles.push(this.gameEngineService.drawATile());
-    }
-  }
-
-  tileRemoved(): void {
-    this.removedTileCount = this.removedTileCount + 1;
-    if (this.removedTileCount >= this.tiles.length - 1) {
-      // This works for now
-      // TODO: this will probably be triggered by the last player placing the tile in their grid
-      // Then the Round will restart, resetting the tray
-      this.drawTilesPerPlayers();
-    }
-  }
-
-  tileSelected(): void {
+  tileSelected(selectedTile: Tile): void {
+    // emit the event to the board
+    this.tileSelectedEvent.emit(selectedTile);
     for (const tile of this.tiles) {
       tile.selected = false;
     }

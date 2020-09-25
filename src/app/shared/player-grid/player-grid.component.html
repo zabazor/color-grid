@@ -4,7 +4,7 @@
     <div *ngFor="let cell of row"
       class="tray-well">
       <div class="cell filled color-{{ cell.color.code }}"
-        (click)="setColor(cell)"></div>
+        (click)="placeTile(cell)"></div>
     </div>
   </div>
 </div>
