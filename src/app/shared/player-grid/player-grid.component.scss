@@ -1,10 +1,7 @@
 @import "../../../assets/scss/index.scss";
 
-.removed {
-  opacity: 0;
-}
-
-.tile {
+// right now, this is basically a copy of tile-card's .tile with margin
+.grid-ridge {
   padding: 0.5rem;
   max-width: max-content;
   max-height: max-content;
@@ -16,9 +13,10 @@
   border-radius: 1rem;
   border-width: 0.5rem;
 
-  // I hate how my editor is reformatting this on save.  I want each shadow to be its own line
-  &.selected {
-    box-shadow: 0 0 0 1px $select-glow1, 0 0 0 3px $select-glow2,
-      0 0 0 5px $select-glow3, 0 0 0 7px $select-glow4, 0 0 0 9px $select-glow5;
-  }
+  margin: 1rem auto;
+}
+
+.cell {
+  padding: 1rem;
+  margin: 0.25rem;
 }

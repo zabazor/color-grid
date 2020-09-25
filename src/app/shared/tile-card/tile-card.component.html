@@ -3,7 +3,7 @@
   (click)="clickTile()">
   <div class="flex-d flex-column justify-content-center">
     <div *ngFor="let row of tile.shape.layout.rows"
-      class="tile-row">
+      class="cell-row">
       <div *ngFor="let cell of row"
         class="cell color-{{ tile.color.code }}"
         [ngClass]="{ 'filled': cell === true }"></div>

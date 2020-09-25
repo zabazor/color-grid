@@ -50,6 +50,7 @@ export enum COLOR_NAMES {
   green = 'Green',
   blue = 'Blue',
   purple = 'Purple',
+  void = 'Void',
 }
 
 export enum COLOR_CODES {
@@ -59,6 +60,7 @@ export enum COLOR_CODES {
   green = 'green',
   blue = 'blue',
   purple = 'purple',
+  void = 'void',
 }
 
 export enum COLOR_ICONS {

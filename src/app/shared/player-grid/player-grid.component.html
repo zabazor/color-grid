@@ -1,0 +1,7 @@
+<div class="grid-ridge">
+  <div *ngFor="let row of grid"
+    class="cell-row">
+    <div *ngFor="let cell of row"
+      class="cell filled color-{{ cell }}"></div>
+  </div>
+</div>

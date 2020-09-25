@@ -1,6 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/index.scss";
 
 // FLEX Added Styles
 .flex-d {
   display: flex;
+}
+
+.cell-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.cell {
+  padding: 0.25rem;
+  border: $invisible 2px solid;
+  border-radius: 2px;
+  margin: 1px;
+
+  // This will come from globals soon enough
+  &.filled {
+    &.color-red {
+      background-color: $red-10;
+      border: $red-40 2px solid;
+    }
+    &.color-orange {
+      background-color: $orange-10;
+      border: $orange-40 2px solid;
+    }
+    &.color-yellow {
+      background-color: $yellow-10;
+      border: $yellow-40 2px solid;
+    }
+    &.color-green {
+      background-color: $green-10;
+      border: $green-40 2px solid;
+    }
+    &.color-blue {
+      background-color: $blue-10;
+      border: $blue-40 2px solid;
+    }
+    &.color-purple {
+      background-color: $purple-10;
+      border: $purple-40 2px solid;
+    }
+    &.color-void {
+      background-color: $tile-gray-40;
+      border: $tile-gray-50 2px solid;
+    }
+  }
 }
