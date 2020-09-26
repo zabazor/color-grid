@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { deepClone } from '../utility';
+import { deepClone } from '../../utility-functions/index';
 import { Tile } from '../../classes';
 import { SHAPES } from '../../data';
 import { COLORS } from '../../data/colors';

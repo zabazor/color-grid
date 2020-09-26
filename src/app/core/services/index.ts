@@ -1,3 +1,2 @@
-export * from './transformation/transformation.service';
-export * from './game-engine/game-engine.service';
-export * from './utility/index';
+export * from './transformation-service/transformation.service';
+export * from './game-engine-service/game-engine.service';
