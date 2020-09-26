@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ExamplesModule } from './shared/examples/examples.module';
-import { TileCardComponent } from './shared/tile-card/tile-card.component';
+// tile tray is asking to be it's own module...
+import { TileCardComponent } from './shared/tile-tray/tile-card/tile-card.component';
 import { TileTrayComponent } from './shared/tile-tray/tile-tray.component';
 import { PlayerGridComponent } from './shared/player-grid/player-grid.component';
-import { GameBoardComponent } from './shared/game-board/game-board.component';
+import { GameBoardComponent } from './game-board/game-board.component';
 
 @NgModule({
   declarations: [

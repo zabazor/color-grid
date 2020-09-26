@@ -20,18 +20,6 @@ export class TileCardComponent implements OnInit {
     this.tile = this.transformationService.rotateTheTile(this.tile);
   }
 
-  // displayEmptyTile(): void {
-  //   if (this.tile.selected) {
-  //     // This will probably be triggered when the tile is placed in the grid
-  //     this.tile.removed = true;
-
-  //     this.tileRemovedEvent.emit(this.tile);
-  //   }
-
-  //   this.tileSelectedEvent.emit(this.tile);
-  //   this.tile.selected = true;
-  // }
-
   clickTile(): void {
     this.tileSelectedEvent.emit(this.tile);
     this.tile.selected = true;

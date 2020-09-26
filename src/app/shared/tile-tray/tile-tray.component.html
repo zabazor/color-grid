@@ -1,7 +1,6 @@
 <div class="tray-ridge">
   <div class="d-flex flex-row tray-well">
     <cg-tile-card [tile]="tile"
-      (tileRemovedEvent)="tileRemoved($event)"
       (tileSelectedEvent)="tileSelected($event)"
       class="tile"
       *ngFor="let tile of tiles"></cg-tile-card>

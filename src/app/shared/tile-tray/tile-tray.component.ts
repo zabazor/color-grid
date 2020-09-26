@@ -22,11 +22,6 @@ export class TileTrayComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // This should be moved up to Game Board
-  // tileRemoved(removedTile: Tile): void {
-  //   this.tileRemovedEvent.emit(removedTile);
-  // }
-
   tileSelected(selectedTile: Tile): void {
     // emit the event to the board
     this.tileSelectedEvent.emit(selectedTile);
