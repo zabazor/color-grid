@@ -1,4 +1,4 @@
-export enum STORAGE_KEYS {
+export enum SUBSCRIPTION_KEYS {
   tileSelected = 'TILE_SELECTED',
   tileRemoved = 'TILE_REMOVED',
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tile } from 'src/app/core/classes';
-import { GameEngineService } from 'src/app/core/services';
-import { TileManagerService } from '../core/services/tile-manager-service/tile-manager.service';
+import { SubscriptionService, TileManagerService } from 'src/app/core/services';
+import { SUBSCRIPTION_KEYS } from '../core/constants';
 
 @Component({
   selector: 'cg-game-board',
@@ -18,16 +18,21 @@ export class GameBoardComponent implements OnInit {
   removedTileCount: number;
   selectedTile: Tile;
 
-  constructor(private tileManagerService: TileManagerService) {}
+  constructor(
+    private tileManagerService: TileManagerService,
+    private subscriptionService: SubscriptionService
+  ) {
+    this.subscriptionService
+      .get(SUBSCRIPTION_KEYS.tileSelected)
+      .subscribe((selectedTile) => {
+        this.selectedTile = selectedTile;
+      });
+  }
 
   ngOnInit(): void {
-    this.selectedTile = null;
     this.drawTilesPerPlayers();
   }
 
-  tileSelected(selectedTile: Tile): void {
-    this.selectedTile = selectedTile;
-  }
   // This should be at the Game Board Level
   drawTilesPerPlayers(): void {
     this.tiles = [];

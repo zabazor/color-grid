@@ -15,18 +15,7 @@ export class TileTrayComponent implements OnInit {
   @Input() selectedTile: Tile;
   @Input() tiles: Tile[];
 
-  @Output() tileSelectedEvent: EventEmitter<Tile> = new EventEmitter<Tile>();
-  // @Output() tileRemovedEvent: EventEmitter<Tile> = new EventEmitter<Tile>();
-
-  constructor(private gameEngineService: GameEngineService) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  tileSelected(selectedTile: Tile): void {
-    // emit the event to the board
-    this.tileSelectedEvent.emit(selectedTile);
-    for (const tile of this.tiles) {
-      tile.selected = false;
-    }
-  }
 }

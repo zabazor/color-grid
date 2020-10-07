@@ -9,6 +9,20 @@ import { deepClone } from '../../utility-functions';
 export class TileManagerService {
   constructor() {}
 
+  tiles: any;
+  removedTileCount: number;
+
+  public drawTilesPerPlayers(players: number[]): void {
+    this.tiles = [];
+
+    this.removedTileCount = 0;
+
+    let i = 0;
+    for (i; i < players.length + 1; i++) {
+      this.tiles.push(this.drawATile());
+    }
+  }
+
   drawATile(): Tile {
     const colorIndex = Math.floor(Math.random() * COLORS.length);
     const color = COLORS[colorIndex];

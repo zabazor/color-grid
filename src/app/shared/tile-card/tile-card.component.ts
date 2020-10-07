@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Tile } from 'src/app/core/classes';
-import { TransformationService } from 'src/app/core/services';
+import { SUBSCRIPTION_KEYS } from 'src/app/core/constants';
+import {
+  TransformationService,
+  SubscriptionService,
+} from 'src/app/core/services';
 
 @Component({
   selector: 'cg-tile-card',
@@ -10,10 +14,10 @@ import { TransformationService } from 'src/app/core/services';
 export class TileCardComponent implements OnInit {
   @Input() tile: Tile;
 
-  // @Output() tileRemovedEvent: EventEmitter<Tile> = new EventEmitter<Tile>();
-  @Output() tileSelectedEvent: EventEmitter<Tile> = new EventEmitter<Tile>();
-
-  constructor(private transformationService: TransformationService) {}
+  constructor(
+    private transformationService: TransformationService,
+    private subscriptionService: SubscriptionService
+  ) {}
 
   ngOnInit(): void {
     this.tile = this.transformationService.reflectTheTile(this.tile);
@@ -21,7 +25,7 @@ export class TileCardComponent implements OnInit {
   }
 
   clickTile(): void {
-    this.tileSelectedEvent.emit(this.tile);
+    this.subscriptionService.set(SUBSCRIPTION_KEYS.tileSelected, this.tile);
     this.tile.selected = true;
   }
 }

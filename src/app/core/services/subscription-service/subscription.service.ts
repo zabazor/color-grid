@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SubscriptionService {
   // PROPERTIES
   private subscribers: any[] = [];
