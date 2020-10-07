@@ -18,33 +18,29 @@
   border-radius: 2px;
   margin: 1px;
 
-  // This will come from globals soon enough
-  // Maybe reverse this and have .empty set this to the invisible color?
-  &.filled {
-    &.color-red {
-      background-color: $red-10;
-      border: $red-40 2px solid;
-    }
-    &.color-orange {
-      background-color: $orange-10;
-      border: $orange-40 2px solid;
-    }
-    &.color-yellow {
-      background-color: $yellow-10;
-      border: $yellow-40 2px solid;
-    }
-    &.color-green {
-      background-color: $green-10;
-      border: $green-40 2px solid;
-    }
-    &.color-blue {
-      background-color: $blue-10;
-      border: $blue-40 2px solid;
-    }
-    &.color-purple {
-      background-color: $purple-10;
-      border: $purple-40 2px solid;
-    }
+  &.color-red {
+    background-color: $red-10;
+    border: $red-40 2px solid;
+  }
+  &.color-orange {
+    background-color: $orange-10;
+    border: $orange-40 2px solid;
+  }
+  &.color-yellow {
+    background-color: $yellow-10;
+    border: $yellow-40 2px solid;
+  }
+  &.color-green {
+    background-color: $green-10;
+    border: $green-40 2px solid;
+  }
+  &.color-blue {
+    background-color: $blue-10;
+    border: $blue-40 2px solid;
+  }
+  &.color-purple {
+    background-color: $purple-10;
+    border: $purple-40 2px solid;
   }
 }
 

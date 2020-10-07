@@ -28,10 +28,14 @@ export class PlayerGridCell {
   rowIndex: number;
   cellIndex: number;
   color?: Color;
+  hoverColor?: Color;
+  hovering: boolean;
 
   constructor(rowIndex: number, cellIndex: number, color?: Color) {
     this.rowIndex = rowIndex;
     this.cellIndex = cellIndex;
     this.color = color ? color : ColorVoid;
+    this.hoverColor = ColorVoid;
+    this.hovering = false;
   }
 }

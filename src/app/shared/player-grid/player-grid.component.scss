@@ -17,4 +17,8 @@
 
 .cell {
   padding: 0.75rem;
+
+  &.hovering {
+    opacity: 0.5;
+  }
 }

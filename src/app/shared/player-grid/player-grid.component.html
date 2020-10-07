@@ -1,10 +1,14 @@
-<div class="tray-ridge">
+<div class="tray-ridge"
+  (click)="clickGrid()">
   <div *ngFor="let row of grid.rows"
     class="cell-row">
     <div *ngFor="let cell of row"
-      class="tray-well">
-      <div class="cell filled color-{{ cell.color.code }}"
-        (click)="placeTile(cell)"></div>
+      class="tray-well"
+      (click)="clickGrid()">
+      <div class="cell"
+        [ngClass]="cell.hovering ? 'color-'+cell.hoverColor.code + ' hovering' : 'color-'+cell.color.code"
+        (click)="clickTile(cell)"
+        (mouseenter)="hoverTile(cell)"></div>
     </div>
   </div>
 </div>

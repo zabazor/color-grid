@@ -4,8 +4,7 @@ import {
   PlayerGrid,
   PlayerGridCell,
 } from 'src/app/core/classes/player-grid.class';
-import { COLOR_CODES } from 'src/app/core/constants';
-import { ColorRed, COLORS } from 'src/app/core/data/colors';
+import { GRID_SQUARE_LENGTH } from 'src/app/core/constants';
 
 @Component({
   selector: 'cg-player-grid',
@@ -17,6 +16,8 @@ export class PlayerGridComponent implements OnInit {
   @Output() removedSelectedTileEvent = new EventEmitter();
 
   grid: PlayerGrid;
+  currentHoveredCells: PlayerGridCell[] = [];
+  currentCell: PlayerGridCell;
 
   constructor() {}
 
@@ -24,45 +25,119 @@ export class PlayerGridComponent implements OnInit {
     this.grid = new PlayerGrid();
   }
 
+  clickGrid(): void {
+    this.placeTile(this.currentCell);
+  }
+
+  clickTile(cell: PlayerGridCell): void {
+    this.placeTile(cell);
+  }
+
   placeTile(cell: PlayerGridCell): void {
-    const selectedGridCells = this.getSelectedGridCells(cell);
+    if (this.selectedTile) {
+      this.clearHover();
+      const selectedGridCells = this.getSelectedGridCells(cell);
 
-    for (const selectedGridCell of selectedGridCells) {
-      selectedGridCell.color = this.selectedTile.color;
+      for (const selectedGridCell of selectedGridCells) {
+        selectedGridCell.color = this.selectedTile.color;
+      }
+
+      this.removedSelectedTileEvent.emit();
     }
-
-    // Clear all grid cells of hover
-
-    this.removedSelectedTileEvent.emit();
   }
 
   hoverTile(cell: PlayerGridCell): void {
-    const selectedGridCells = this.getSelectedGridCells(cell);
+    if (this.selectedTile) {
+      this.clearHover();
+      this.currentCell = cell;
+      const selectedGridCells = this.getSelectedGridCells(this.currentCell);
 
-    // we need a temporary color shift somehow... Maybe just update the grid cell to have a hover color
+      for (const selectedGridCell of selectedGridCells) {
+        selectedGridCell.hoverColor = this.selectedTile.color;
+        selectedGridCell.hovering = true;
+      }
 
-    // Clear all other hovered cells that are not part of the selectedGridCells
+      this.currentHoveredCells = selectedGridCells;
+    }
+  }
+
+  clearHover(): void {
+    for (const cell of this.currentHoveredCells) {
+      cell.hovering = false;
+    }
+  }
+
+  private adjustInitialOffset(gridCell: PlayerGridCell): any {
+    let rowOffsetInitialValue = -1;
+    let cellOffsetInitialValue = -1;
+    const selectedTileRows = this.selectedTile.shape.layout.rows;
+    const lastTileRowIndex = selectedTileRows.length - 1;
+    const lastTileCellIndex = selectedTileRows[0].length - 1;
+
+    let adjustTop = false;
+    for (const tileCell of selectedTileRows[0]) {
+      if (tileCell) {
+        adjustTop = true;
+      }
+    }
+    if (gridCell.rowIndex === 0 && adjustTop) {
+      rowOffsetInitialValue = rowOffsetInitialValue + 1;
+    }
+
+    let adjustBottom = false;
+    for (const tileCell of selectedTileRows[lastTileRowIndex]) {
+      if (tileCell) {
+        adjustBottom = true;
+      }
+    }
+    if (gridCell.rowIndex === GRID_SQUARE_LENGTH - 1 && adjustBottom) {
+      rowOffsetInitialValue = rowOffsetInitialValue - 1;
+    }
+
+    let adjustLeft = false;
+    for (const tileRow of selectedTileRows) {
+      if (tileRow[0]) {
+        adjustLeft = true;
+      }
+    }
+    if (gridCell.cellIndex === 0 && adjustLeft) {
+      cellOffsetInitialValue = cellOffsetInitialValue + 1;
+    }
+
+    let adjustRight = false;
+    for (const tileRow of selectedTileRows) {
+      if (tileRow[lastTileCellIndex]) {
+        adjustRight = true;
+      }
+    }
+    if (gridCell.cellIndex === GRID_SQUARE_LENGTH - 1 && adjustRight) {
+      cellOffsetInitialValue = cellOffsetInitialValue - 1;
+    }
+
+    return {
+      rowOffsetInitialValue,
+      cellOffsetInitialValue,
+    };
   }
 
   // Add validation in this so if the player is selecting the edge of the grid, the tile center shifts away from that edge
-  getSelectedGridCells(cell: PlayerGridCell): PlayerGridCell[] {
+  private getSelectedGridCells(cell: PlayerGridCell): PlayerGridCell[] {
     const gridCellsToFill = [];
-    let tileRowOffset = -1;
+    const initialOffsets = this.adjustInitialOffset(cell);
+
+    let rowOffset = initialOffsets.rowOffsetInitialValue;
 
     for (const tileRow of this.selectedTile.shape.layout.rows) {
-      let tileCellOffset = -1;
+      let cellOffset = initialOffsets.cellOffsetInitialValue;
       for (const tileCell of tileRow) {
         if (tileCell) {
-          const gridRowIndex = cell.rowIndex + tileRowOffset;
-          const gridCellIndex = cell.cellIndex + tileCellOffset;
+          const gridRowIndex = cell.rowIndex + rowOffset;
+          const gridCellIndex = cell.cellIndex + cellOffset;
           gridCellsToFill.push(this.grid.rows[gridRowIndex][gridCellIndex]);
-          // Maybe instead, have this add a call back function that tells us what to do here
-          // This might be helpful because we want to fill hovered cells and un-fill not hovered cells on hover
-          // and we want to apply color and remove all hover cells on clock
         }
-        tileCellOffset++;
+        cellOffset++;
       }
-      tileRowOffset++;
+      rowOffset++;
     }
 
     return gridCellsToFill;
