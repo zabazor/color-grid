@@ -1,10 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { COLOR_CODES, FACING } from 'src/app/core/constants';
+import { COLOR_CODES, FACING, SUBSCRIPTION_KEYS } from 'src/app/core/constants';
 import { SHAPES } from 'src/app/core/data';
 import { ColorGreen, ColorPurple, ColorRed } from 'src/app/core/data/colors';
 import { Tile } from 'src/app/core/classes';
-import { GameEngineService } from 'src/app/core/services';
-import { ɵangular_packages_platform_browser_dynamic_platform_browser_dynamic_a } from '@angular/platform-browser-dynamic';
+import {
+  GameEngineService,
+  SubscriptionService,
+  TileManagerService,
+} from 'src/app/core/services';
 
 @Component({
   selector: 'cg-tile-tray',
@@ -12,10 +15,53 @@ import { ɵangular_packages_platform_browser_dynamic_platform_browser_dynamic_a 
   styleUrls: ['./tile-tray.component.scss'],
 })
 export class TileTrayComponent implements OnInit {
-  @Input() selectedTile: Tile;
-  @Input() tiles: Tile[];
+  @Input() players: any[];
 
-  constructor() {}
+  removedTileCount: number;
+  tiles: Tile[];
 
-  ngOnInit(): void {}
+  constructor(
+    private tileManagerService: TileManagerService,
+    private subscriptionService: SubscriptionService
+  ) {
+    this.subscriptionService
+      .get(SUBSCRIPTION_KEYS.tileRemoved)
+      .subscribe(() => {
+        const selectedTile = this.tileManagerService.getSelectedTile();
+        this.removeSelectedTile(selectedTile);
+      });
+  }
+
+  ngOnInit(): void {
+    // This will need to be moved to a service and probably a class later
+    this.players = [1, 2, 3, 4];
+    this.drawTiles();
+  }
+
+  drawTiles(): void {
+    this.removedTileCount = 0;
+    this.tiles = this.tileManagerService.drawTilesPerPlayers(this.players);
+  }
+
+  removeSelectedTile(selectedTile: Tile): void {
+    if (!selectedTile.removed) {
+      selectedTile.removed = true;
+      this.removedTileCount = this.removedTileCount + 1;
+      if (this.removedTileCount >= this.tiles.length - 1) {
+        // TODO: this will probably be triggered by the last player placing the tile in their grid
+        // Then the Round will restart, resetting the tray
+        this.drawTiles();
+      }
+    }
+  }
+
+  tileSelected(selectedTile): void {
+    for (const tile of this.tiles) {
+      tile.selected = false;
+    }
+
+    selectedTile.selected = true;
+    this.tileManagerService.setSelectedTile(selectedTile);
+    this.subscriptionService.set(SUBSCRIPTION_KEYS.tileSelected, selectedTile);
+  }
 }

@@ -4,6 +4,7 @@ import { SUBSCRIPTION_KEYS } from 'src/app/core/constants';
 import {
   TransformationService,
   SubscriptionService,
+  TileManagerService,
 } from 'src/app/core/services';
 
 @Component({
@@ -13,9 +14,11 @@ import {
 })
 export class TileCardComponent implements OnInit {
   @Input() tile: Tile;
+  @Output() tileSelectedEvent = new EventEmitter();
 
   constructor(
     private transformationService: TransformationService,
+    private tileManagerService: TileManagerService,
     private subscriptionService: SubscriptionService
   ) {}
 
@@ -25,7 +28,6 @@ export class TileCardComponent implements OnInit {
   }
 
   clickTile(): void {
-    this.subscriptionService.set(SUBSCRIPTION_KEYS.tileSelected, this.tile);
-    this.tile.selected = true;
+    this.tileSelectedEvent.emit(this.tile);
   }
 }

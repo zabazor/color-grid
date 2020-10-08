@@ -9,11 +9,33 @@ import { deepClone } from '../../utility-functions';
 export class TileManagerService {
   constructor() {}
 
-  tiles: any;
+  tiles: Tile[];
+  selectedTile: Tile;
   removedTileCount: number;
 
-  public drawTilesPerPlayers(players: number[]): void {
+  /**
+   * getTiles
+   * @description Returns the global tiles
+   */
+  public getTiles(): Tile[] {
+    return this.tiles;
+  }
+
+  public setSelectedTile(selectedTile: Tile): void {
+    this.selectedTile = selectedTile;
+  }
+
+  public getSelectedTile(): Tile {
+    return this.selectedTile;
+  }
+
+  /**
+   * drawTilesPerPlayers
+   * @description Draws a new set of tiles based on the number of players
+   */
+  public drawTilesPerPlayers(players: number[]): Tile[] {
     this.tiles = [];
+    this.selectedTile = null;
 
     this.removedTileCount = 0;
 
@@ -21,9 +43,15 @@ export class TileManagerService {
     for (i; i < players.length + 1; i++) {
       this.tiles.push(this.drawATile());
     }
+
+    return this.tiles;
   }
 
-  drawATile(): Tile {
+  /**
+   * drawATile
+   * @description Draws a new tile card at random
+   */
+  private drawATile(): Tile {
     const colorIndex = Math.floor(Math.random() * COLORS.length);
     const color = COLORS[colorIndex];
 
