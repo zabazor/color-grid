@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Tile } from '../../classes';
-import { COLORS, FACINGS, SHAPES } from '../../data';
+import { COLORS, ColorVoid, FACINGS, SHAPES, VOID_SHAPE } from '../../data';
 import { deepClone } from '../../utility-functions';
 
 @Injectable({
@@ -66,5 +66,9 @@ export class TileManagerService {
     const reflection = Math.floor(Math.random() * 2) === 1;
 
     return new Tile(color, shape, facing, reflection);
+  }
+
+  public getBlankTile(): Tile {
+    return new Tile(ColorVoid, VOID_SHAPE, FACINGS[0], false);
   }
 }

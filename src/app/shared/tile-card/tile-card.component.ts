@@ -14,6 +14,7 @@ import {
 })
 export class TileCardComponent implements OnInit {
   @Input() tile: Tile;
+  @Input() displayOnly: boolean;
   @Output() tileSelectedEvent = new EventEmitter();
 
   constructor(
@@ -28,6 +29,8 @@ export class TileCardComponent implements OnInit {
   }
 
   clickTile(): void {
-    this.tileSelectedEvent.emit(this.tile);
+    if (!this.displayOnly) {
+      this.tileSelectedEvent.emit(this.tile);
+    }
   }
 }

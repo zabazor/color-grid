@@ -1,14 +1,22 @@
-<div class="tray-ridge"
-  (click)="clickGrid()"
-  (mouseleave)="clearHover()">
-  <div *ngFor="let row of grid.rows"
-    class="cell-row">
-    <div *ngFor="let cell of row"
-      class="tray-well">
-      <div class="cell"
-        [ngClass]="cell.hovering ? 'color-'+cell.hoverColor.code + ' hovering' : 'color-'+cell.color.code"
-        (click)="clickTile(cell)"
-        (mouseenter)="hoverTile(cell)"></div>
+<div class="player-grid">
+  <div class="tray-ridge"
+    (click)="clickGrid()"
+    (mouseleave)="clearHover()">
+    <div *ngFor="let row of grid.rows"
+      class="cell-row">
+      <div *ngFor="let cell of row"
+        class="tray-well">
+        <div class="cell"
+          [ngClass]="cell.hovering ? 'color-'+cell.hoverColor.code + ' hovering' : 'color-'+cell.color.code"
+          (mouseenter)="hoverTile(cell)"></div>
+      </div>
     </div>
+  </div>
+  <div class="button-group">
+    <button>Rotate Left</button>
+    <cg-tile-card [tile]="selectedTile"
+      [displayOnly]="true"
+      class="tile"></cg-tile-card>
+    <button>Rotate Right</button>
   </div>
 </div>

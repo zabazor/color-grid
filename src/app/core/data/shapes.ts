@@ -163,3 +163,14 @@ export const SHAPES = [
     true
   ),
 ];
+
+export const VOID_SHAPE = new Shape(
+  SHAPE_NAMES.void,
+  SHAPE_CODES.void,
+  new ShapeLayout(
+    [false, false, false],
+    [false, false, false],
+    [false, false, false]
+  ),
+  false
+);

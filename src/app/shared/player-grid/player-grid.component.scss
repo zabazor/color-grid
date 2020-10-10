@@ -7,7 +7,7 @@
   max-height: max-content;
 
   border-radius: 0.5rem;
-  margin: 1rem auto;
+  margin: 1rem;
   padding: 0.25rem;
 }
 
@@ -21,4 +21,17 @@
   &.hovering {
     opacity: 0.5;
   }
+}
+
+.player-grid {
+  display: flex;
+  flex-direction: column;
+  max-width: max-content;
+  margin: 0 auto;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

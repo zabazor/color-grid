@@ -15,6 +15,8 @@ export enum SHAPE_NAMES {
   largeEdge = 'Large Edge',
   wedge = 'Wedge',
   pipe = 'Pipe',
+
+  void = 'Void',
 }
 
 export enum SHAPE_CODES {
@@ -34,6 +36,8 @@ export enum SHAPE_CODES {
   largeEdge = 'large-edge',
   wedge = 'wedge',
   pipe = 'pipe',
+
+  void = 'void',
 }
 
 export enum FACING {
@@ -50,6 +54,7 @@ export enum COLOR_NAMES {
   green = 'Green',
   blue = 'Blue',
   purple = 'Purple',
+
   void = 'Void',
 }
 
@@ -60,6 +65,7 @@ export enum COLOR_CODES {
   green = 'green',
   blue = 'blue',
   purple = 'purple',
+
   void = 'void',
 }
 
@@ -70,5 +76,6 @@ export enum COLOR_ICONS {
   green = 'leaf',
   blue = 'water',
   purple = 'star', // as star this could be (magic/darkness)
+
   void = 'void',
 }

@@ -63,6 +63,7 @@ export class TileTrayComponent implements OnInit, OnDestroy {
         // TODO: this will probably be triggered by the last player placing the tile in their grid
         // Then the Round will restart, resetting the tray
         this.drawTiles();
+        this.removedTileCount = 0;
       }
     }
   }

@@ -5,7 +5,8 @@ import {
   PlayerGridCell,
 } from 'src/app/core/classes/player-grid.class';
 import { GRID_SQUARE_LENGTH, SUBSCRIPTION_KEYS } from 'src/app/core/constants';
-import { SubscriptionService } from 'src/app/core/services';
+import { SubscriptionService, TileManagerService } from 'src/app/core/services';
+import { deepClone } from 'src/app/core/utility-functions';
 import { PlayerGridService } from './player-grid.service';
 
 @Component({
@@ -14,7 +15,8 @@ import { PlayerGridService } from './player-grid.service';
   styleUrls: ['./player-grid.component.scss'],
 })
 export class PlayerGridComponent implements OnInit, OnDestroy {
-  @Input() selectedTile: Tile;
+  globalSelectedTile: Tile;
+  selectedTile: Tile;
 
   grid: PlayerGrid;
   currentHoveredCells: PlayerGridCell[] = [];
@@ -24,17 +26,21 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
 
   constructor(
     private playerGridService: PlayerGridService,
+    private tileManagerService: TileManagerService,
     private subscriptionService: SubscriptionService
   ) {
     this.tileSelectedSubscription = this.subscriptionService
       .get(SUBSCRIPTION_KEYS.tileSelected)
       .subscribe((selectedTile) => {
-        this.selectedTile = selectedTile;
+        this.globalSelectedTile = selectedTile;
+        this.selectedTile = deepClone(selectedTile);
+        this.selectedTile.selected = false;
       });
   }
 
   ngOnInit(): void {
     this.grid = new PlayerGrid();
+    this.clearSelectedTile();
   }
 
   ngOnDestroy(): void {
@@ -64,9 +70,9 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
 
       this.subscriptionService.set(
         SUBSCRIPTION_KEYS.tileRemoved,
-        this.selectedTile
+        this.globalSelectedTile
       );
-      this.selectedTile = null;
+      this.clearSelectedTile();
     }
   }
 
@@ -93,5 +99,10 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
     for (const cell of this.currentHoveredCells) {
       cell.hovering = false;
     }
+  }
+
+  clearSelectedTile(): void {
+    this.selectedTile = null;
+    this.selectedTile = this.tileManagerService.getBlankTile();
   }
 }
