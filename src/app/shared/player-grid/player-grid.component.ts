@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Tile } from 'src/app/core/classes';
 import {
   PlayerGrid,
@@ -13,18 +13,20 @@ import { PlayerGridService } from './player-grid.service';
   templateUrl: './player-grid.component.html',
   styleUrls: ['./player-grid.component.scss'],
 })
-export class PlayerGridComponent implements OnInit {
+export class PlayerGridComponent implements OnInit, OnDestroy {
   @Input() selectedTile: Tile;
 
   grid: PlayerGrid;
   currentHoveredCells: PlayerGridCell[] = [];
   currentCell: PlayerGridCell;
 
+  private tileSelectedSubscription;
+
   constructor(
     private playerGridService: PlayerGridService,
     private subscriptionService: SubscriptionService
   ) {
-    this.subscriptionService
+    this.tileSelectedSubscription = this.subscriptionService
       .get(SUBSCRIPTION_KEYS.tileSelected)
       .subscribe((selectedTile) => {
         this.selectedTile = selectedTile;
@@ -33,6 +35,10 @@ export class PlayerGridComponent implements OnInit {
 
   ngOnInit(): void {
     this.grid = new PlayerGrid();
+  }
+
+  ngOnDestroy(): void {
+    this.tileSelectedSubscription.unsubscribe();
   }
 
   clickGrid(): void {

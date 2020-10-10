@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { COLOR_CODES, FACING, SUBSCRIPTION_KEYS } from 'src/app/core/constants';
 import { SHAPES } from 'src/app/core/data';
 import { ColorGreen, ColorPurple, ColorRed } from 'src/app/core/data/colors';
@@ -14,17 +21,18 @@ import {
   templateUrl: './tile-tray.component.html',
   styleUrls: ['./tile-tray.component.scss'],
 })
-export class TileTrayComponent implements OnInit {
+export class TileTrayComponent implements OnInit, OnDestroy {
   @Input() players: any[];
 
   removedTileCount: number;
   tiles: Tile[];
+  private tileRemovedSubscription;
 
   constructor(
     private tileManagerService: TileManagerService,
     private subscriptionService: SubscriptionService
   ) {
-    this.subscriptionService
+    this.tileRemovedSubscription = this.subscriptionService
       .get(SUBSCRIPTION_KEYS.tileRemoved)
       .subscribe(() => {
         const selectedTile = this.tileManagerService.getSelectedTile();
@@ -36,6 +44,10 @@ export class TileTrayComponent implements OnInit {
     // This will need to be moved to a service and probably a class later
     this.players = [1, 2, 3, 4];
     this.drawTiles();
+  }
+
+  ngOnDestroy(): void {
+    this.tileRemovedSubscription.unsubscribe();
   }
 
   drawTiles(): void {
