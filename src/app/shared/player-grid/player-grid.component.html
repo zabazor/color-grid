@@ -13,10 +13,13 @@
     </div>
   </div>
   <div class="button-group">
-    <button>Rotate Left</button>
+    <button (click)="rotateTileLeft()"
+      [disabled]="!selectedTileCanRotate">Rotate <br>
+      Left</button>
     <cg-tile-card [tile]="selectedTile"
-      [displayOnly]="true"
       class="tile"></cg-tile-card>
-    <button>Rotate Right</button>
+    <button (click)="rotateTileRight()"
+      [disabled]="!selectedTileCanRotate">Rotate <br>
+      Right</button>
   </div>
 </div>

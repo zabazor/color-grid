@@ -14,14 +14,9 @@ import {
 })
 export class TileCardComponent implements OnInit {
   @Input() tile: Tile;
-  @Input() displayOnly: boolean;
   @Output() tileSelectedEvent = new EventEmitter();
 
-  constructor(
-    private transformationService: TransformationService,
-    private tileManagerService: TileManagerService,
-    private subscriptionService: SubscriptionService
-  ) {}
+  constructor(private transformationService: TransformationService) {}
 
   ngOnInit(): void {
     this.tile = this.transformationService.reflectTheTile(this.tile);
@@ -29,8 +24,6 @@ export class TileCardComponent implements OnInit {
   }
 
   clickTile(): void {
-    if (!this.displayOnly) {
-      this.tileSelectedEvent.emit(this.tile);
-    }
+    this.tileSelectedEvent.emit(this.tile);
   }
 }

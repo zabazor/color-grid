@@ -1,10 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Tile } from 'src/app/core/classes';
 import {
   PlayerGrid,
   PlayerGridCell,
 } from 'src/app/core/classes/player-grid.class';
-import { GRID_SQUARE_LENGTH, SUBSCRIPTION_KEYS } from 'src/app/core/constants';
+import { SUBSCRIPTION_KEYS } from 'src/app/core/constants';
 import { SubscriptionService, TileManagerService } from 'src/app/core/services';
 import { deepClone } from 'src/app/core/utility-functions';
 import { PlayerGridService } from './player-grid.service';
@@ -17,6 +17,7 @@ import { PlayerGridService } from './player-grid.service';
 export class PlayerGridComponent implements OnInit, OnDestroy {
   globalSelectedTile: Tile;
   selectedTile: Tile;
+  selectedTileCanRotate: boolean;
 
   grid: PlayerGrid;
   currentHoveredCells: PlayerGridCell[] = [];
@@ -35,6 +36,9 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
         this.globalSelectedTile = selectedTile;
         this.selectedTile = deepClone(selectedTile);
         this.selectedTile.selected = false;
+        this.selectedTileCanRotate = this.tileManagerService.canTileRotate(
+          selectedTile
+        );
       });
   }
 
@@ -53,6 +57,14 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
 
   clickTile(cell: PlayerGridCell): void {
     this.placeTile(cell);
+  }
+
+  rotateTileRight(): void {
+    this.tileManagerService.rotateTileRight(this.selectedTile);
+  }
+
+  rotateTileLeft(): void {
+    this.tileManagerService.rotateTileLeft(this.selectedTile);
   }
 
   placeTile(cell: PlayerGridCell): void {

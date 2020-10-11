@@ -68,13 +68,28 @@ export class TileTrayComponent implements OnInit, OnDestroy {
     }
   }
 
-  tileSelected(selectedTile): void {
+  tileSelected(selectedTile: Tile): void {
+    let newSelectedTile = this.tileManagerService.getBlankTile();
+
+    if (!selectedTile.selected) {
+      newSelectedTile = selectedTile;
+    }
+
+    // Clear all tiles as Selected
     for (const tile of this.tiles) {
       tile.selected = false;
     }
 
-    selectedTile.selected = true;
-    this.tileManagerService.setSelectedTile(selectedTile);
-    this.subscriptionService.set(SUBSCRIPTION_KEYS.tileSelected, selectedTile);
+    // Set the selected tile as selected, if it is the first click
+    if (newSelectedTile) {
+      newSelectedTile.selected = true;
+    }
+
+    // Update the site with the new selection
+    this.tileManagerService.setSelectedTile(newSelectedTile);
+    this.subscriptionService.set(
+      SUBSCRIPTION_KEYS.tileSelected,
+      newSelectedTile
+    );
   }
 }
