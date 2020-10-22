@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Tile } from '../../classes';
-import { COLORS, ColorVoid, FACINGS, SHAPES, VOID_SHAPE } from '../../data';
+import { COLORS, ColorVoid, FACINGS, SHAPES, SHAPE_VOID } from '../../data';
 import { deepClone } from '../../utility-functions';
 import { TransformationService } from '../transformation-service/transformation.service';
 
@@ -71,20 +71,20 @@ export class TileManagerService {
 
   // This might go away at some point - not sure it will be needed
   public getBlankTile(): Tile {
-    return new Tile(ColorVoid, VOID_SHAPE, FACINGS[0], false);
+    return new Tile(ColorVoid, SHAPE_VOID, FACINGS[0], false);
   }
 
   public rotateTileRight(selectedTile: Tile): Tile {
-    selectedTile.shape.layout.rows = this.transformationService.rotate2DArrayRight(
-      selectedTile.shape.layout.rows
+    selectedTile.shape = this.transformationService.rotate2DArrayRight(
+      selectedTile.shape
     );
 
     return selectedTile;
   }
 
   public rotateTileLeft(selectedTile: Tile): Tile {
-    selectedTile.shape.layout.rows = this.transformationService.rotate2DArrayLeft(
-      selectedTile.shape.layout.rows
+    selectedTile.shape = this.transformationService.rotate2DArrayLeft(
+      selectedTile.shape
     );
 
     return selectedTile;
@@ -97,20 +97,12 @@ export class TileManagerService {
     // if after rotating the shape, if the cells do not match - it must be able to rotate
     let cellDoesNotMatch = false;
     let rowIndex = 0;
-    for (
-      rowIndex;
-      rowIndex < selectedTile.shape.layout.rows.length;
-      rowIndex++
-    ) {
+    for (rowIndex; rowIndex < selectedTile.shape.length; rowIndex++) {
       let cellIndex = 0;
-      for (
-        cellIndex;
-        cellIndex < selectedTile.shape.layout.rows[0].length;
-        cellIndex++
-      ) {
+      for (cellIndex; cellIndex < selectedTile.shape[0].length; cellIndex++) {
         if (
-          initialTilePosition.shape.layout.rows[rowIndex][cellIndex] !==
-          rotatedTile.shape.layout.rows[rowIndex][cellIndex]
+          initialTilePosition.shape[rowIndex][cellIndex] !==
+          rotatedTile.shape[rowIndex][cellIndex]
         ) {
           cellDoesNotMatch = true;
           break;

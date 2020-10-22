@@ -1,8 +1,10 @@
 # Color Grid
 
-// Might remove the facing so the player can freely rotate the tile = 110 unique tiles
 Tile possibilities = (nonReflectiveShapes + 2*reflectiveShapes) * color * facing
 440 = (10 + 2*6) _ 5 _ 4
+
+Shapes total = 16 :10/10/2020
+SHAPES TOTAL = 32 :10/11/2020
 
 # --------------Development Information-----------------
 

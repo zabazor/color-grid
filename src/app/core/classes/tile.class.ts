@@ -1,9 +1,8 @@
-import { ClassField } from '@angular/compiler';
-import { Color, Shape } from '.';
+import { Color } from '.';
 
 export class Tile {
   color: Color;
-  shape: Shape;
+  shape: boolean[][];
   facing: string;
   reflection: boolean;
   selected: boolean;
@@ -11,7 +10,7 @@ export class Tile {
 
   constructor(
     color: Color,
-    shape: Shape,
+    shape: boolean[][],
     facing: string,
     reflection?: boolean
   ) {

@@ -22,7 +22,7 @@ export class PlayerGridService {
 
     let rowOffset = initialOffsets.rowOffsetInitialValue;
 
-    for (const tileRow of selectedTile.shape.layout.rows) {
+    for (const tileRow of selectedTile.shape) {
       let cellOffset = initialOffsets.cellOffsetInitialValue;
       for (const tileCell of tileRow) {
         if (tileCell) {
@@ -44,7 +44,7 @@ export class PlayerGridService {
   ): any {
     let rowOffsetInitialValue = -1;
     let cellOffsetInitialValue = -1;
-    const selectedTileRows = selectedTile.shape.layout.rows;
+    const selectedTileRows = selectedTile.shape;
     const lastTileRowIndex = selectedTileRows.length - 1;
     const lastTileCellIndex = selectedTileRows[0].length - 1;
 

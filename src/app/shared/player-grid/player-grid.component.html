@@ -1,11 +1,11 @@
 <div class="player-grid">
-  <div class="tray-ridge"
+  <div class="ridge"
     (click)="clickGrid()"
     (mouseleave)="clearHover()">
     <div *ngFor="let row of grid.rows"
       class="cell-row">
       <div *ngFor="let cell of row"
-        class="tray-well">
+        class="well">
         <div class="cell"
           [ngClass]="cell.hovering ? 'color-'+cell.hoverColor.code + ' hovering' : 'color-'+cell.color.code"
           (mouseenter)="hoverTile(cell)"></div>
@@ -13,12 +13,14 @@
     </div>
   </div>
   <div class="button-group">
-    <button (click)="rotateTileLeft()"
+    <button class="button"
+      (click)="rotateTileLeft()"
       [disabled]="!selectedTileCanRotate">Rotate <br>
       Left</button>
     <cg-tile-card [tile]="selectedTile"
       class="tile"></cg-tile-card>
-    <button (click)="rotateTileRight()"
+    <button class="button"
+      (click)="rotateTileRight()"
       [disabled]="!selectedTileCanRotate">Rotate <br>
       Right</button>
   </div>

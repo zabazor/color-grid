@@ -24,6 +24,8 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
   currentCell: PlayerGridCell;
 
   private tileSelectedSubscription;
+  private rightArrowDownSubscription;
+  private leftArrowDownSubscription;
 
   constructor(
     private playerGridService: PlayerGridService,
@@ -40,6 +42,24 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
           selectedTile
         );
       });
+
+    this.rightArrowDownSubscription = this.subscriptionService
+      .get(SUBSCRIPTION_KEYS.rightArrowDown)
+      .subscribe(() => {
+        this.rotateTileRight();
+        if (this.currentCell) {
+          this.hoverTile(this.currentCell);
+        }
+      });
+
+    this.leftArrowDownSubscription = this.subscriptionService
+      .get(SUBSCRIPTION_KEYS.leftArrowDown)
+      .subscribe(() => {
+        this.rotateTileLeft();
+        if (this.currentCell) {
+          this.hoverTile(this.currentCell);
+        }
+      });
   }
 
   ngOnInit(): void {
@@ -49,6 +69,8 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.tileSelectedSubscription.unsubscribe();
+    this.rightArrowDownSubscription.unsubscribe();
+    this.leftArrowDownSubscription.unsubscribe();
   }
 
   clickGrid(): void {
@@ -92,6 +114,7 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
     if (this.selectedTile) {
       this.clearHover();
       this.currentCell = cell;
+
       const selectedGridCells = this.playerGridService.getSelectedGridCells(
         this.currentCell,
         this.selectedTile,
@@ -111,6 +134,7 @@ export class PlayerGridComponent implements OnInit, OnDestroy {
     for (const cell of this.currentHoveredCells) {
       cell.hovering = false;
     }
+    this.currentCell = null;
   }
 
   clearSelectedTile(): void {

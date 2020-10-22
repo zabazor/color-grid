@@ -9,8 +9,9 @@ export class TransformationService {
   constructor() {}
 
   reflectTheTile(tile: Tile): Tile {
-    if (tile.reflection && tile.shape.reflective) {
-      for (const row of tile.shape.layout.rows) {
+    // Might want to avoid reflection if it has horizontal symmetry, but as a function
+    if (tile.reflection) {
+      for (const row of tile.shape) {
         row.reverse();
       }
     }
@@ -20,13 +21,11 @@ export class TransformationService {
   rotateTheTile(tile: Tile): Tile {
     // FACING.upWards is the default, so it is not changed
     if (tile.facing === FACING.right) {
-      tile.shape.layout.rows = this.rotate2DArrayRight(tile.shape.layout.rows);
+      tile.shape = this.rotate2DArrayRight(tile.shape);
     } else if (tile.facing === FACING.left) {
-      tile.shape.layout.rows = this.rotate2DArrayLeft(tile.shape.layout.rows);
+      tile.shape = this.rotate2DArrayLeft(tile.shape);
     } else if (tile.facing === FACING.downWards) {
-      tile.shape.layout.rows = this.rotate2DArrayUpsideDown(
-        tile.shape.layout.rows
-      );
+      tile.shape = this.rotate2DArrayUpsideDown(tile.shape);
     }
     return tile;
   }

@@ -44,7 +44,7 @@
   }
 }
 
-.tray-ridge {
+.ridge {
   background-color: $tile-gray-15;
   border-top: $tile-gray-10 solid;
   border-right: $tile-gray-25 solid;
@@ -52,10 +52,35 @@
   border-left: $tile-gray-20 solid;
 }
 
-.tray-well {
+.well {
   background-color: $tile-gray-40;
   border-top: $tile-gray-50 solid;
-  border-right: $tile-gray-30 solid;
-  border-bottom: $tile-gray-35 solid;
+  border-right: $tile-gray-35 solid;
+  border-bottom: $tile-gray-30 solid;
   border-left: $tile-gray-45 solid;
+}
+
+.button {
+  color: white;
+
+  background-color: $tile-gray-40;
+  border-top: $tile-gray-30 solid;
+  border-right: $tile-gray-45 solid;
+  border-bottom: $tile-gray-50 solid;
+  border-left: $tile-gray-35 solid;
+
+  &:active {
+    border-top: $tile-gray-45 solid;
+    border-right: $tile-gray-30 solid;
+    border-bottom: $tile-gray-35 solid;
+    border-left: $tile-gray-50 solid;
+  }
+
+  &:disabled {
+    background-color: $tile-gray-30;
+    border-top: $tile-gray-20 solid;
+    border-right: $tile-gray-35 solid;
+    border-bottom: $tile-gray-40 solid;
+    border-left: $tile-gray-25 solid;
+  }
 }
